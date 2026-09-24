@@ -1,6 +1,4 @@
-// Your WeatherAPI.com key. Anyone who opens this page can see it,
-// so use a free key and never reuse it for anything important.
-const API_KEY = "bb90a19629574a2589e121047262409";
+const API_KEY = "755c5bd38afa46bea89124627262409";
 const API_URL = "https://api.weatherapi.com/v1/current.json";
 
 const form = document.getElementById("search-form");
@@ -8,8 +6,6 @@ const cityInput = document.getElementById("city");
 const button = document.getElementById("search-btn");
 const statusEl = document.getElementById("status");
 const result = document.getElementById("result");
-
-// US EPA air quality index, as returned by WeatherAPI (1 to 6)
 const AIR_LABELS = {
   1: "Good",
   2: "Moderate",
@@ -20,7 +16,7 @@ const AIR_LABELS = {
 };
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); // stop the page from reloading
+  event.preventDefault(); 
   const city = cityInput.value.trim();
   if (city) loadWeather(city);
 });
@@ -35,7 +31,6 @@ async function loadWeather(city) {
     const data = await response.json();
 
     if (!response.ok) {
-      // WeatherAPI error code 1006 means "no matching location"
       if (data.error && data.error.code === 1006) {
         throw new Error(`No city found for "${city}". Check the spelling and try again.`);
       }
@@ -46,7 +41,7 @@ async function loadWeather(city) {
     setStatus("");
   } catch (error) {
     result.hidden = true;
-    const offline = error instanceof TypeError; // fetch fails with TypeError when offline
+    const offline = error instanceof TypeError; 
     setStatus(offline ? "No internet connection. Check it and try again." : error.message, true);
   } finally {
     button.disabled = false;
@@ -79,8 +74,6 @@ function showWeather(data) {
   setBackground(pickTheme(current));
   result.hidden = false;
 }
-
-// Choose the page colour from the weather condition code and day/night
 function pickTheme(current) {
   if (!current.is_day) return "night";
   const code = current.condition.code;
@@ -98,10 +91,6 @@ function setStatus(message, isError = false) {
   statusEl.className = isError ? "error" : "";
 }
 
-// ---------- Background: video (optional) or animated scene ----------
-
-// Optional: put short looping videos in a "videos" folder with these names.
-// If a file is missing, the animated scene is shown instead.
 const VIDEOS = {
   home: "videos/mix.mp4",
   clear: "videos/sunny.mp4",
@@ -112,9 +101,8 @@ const VIDEOS = {
   night: "videos/night.mp4",
 };
 
-// What falls from the sky for each weather: type and how many
 const PARTICLES = {
-  home: ["rain", 35],   // front page: sun + clouds + a light drizzle
+  home: ["rain", 35],   
   rain: ["rain", 120],
   storm: ["rain", 200],
   snow: ["snow", 70],
@@ -147,14 +135,14 @@ function makeParticles(theme) {
     } else {
       const seconds = type === "rain" ? 0.6 + Math.random() * 0.6 : 6 + Math.random() * 4;
       item.style.animationDuration = seconds + "s";
-      item.style.animationDelay = -Math.random() * seconds + "s"; // start mid-fall
+      item.style.animationDelay = -Math.random() * seconds + "s"; 
     }
     drops.appendChild(item);
   }
 }
 
 function setVideo(theme) {
-  // Start with the animated scene, switch to video only if it really plays
+
   video.style.display = "none";
   scene.style.display = "block";
 
@@ -171,5 +159,4 @@ function setVideo(theme) {
   video.play().catch(() => {});
 }
 
-// Front page: a mix of sun, clouds and rain
 setBackground("home");

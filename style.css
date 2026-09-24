@@ -1,4 +1,4 @@
-/* ---------- Page and background ---------- */
+
 * {
   box-sizing: border-box;
 }
@@ -11,7 +11,7 @@ body {
   background: linear-gradient(to bottom, #6fa8dc, #d9e8f5);
 }
 
-/* The background colour changes with the weather (set by script.js) */
+
 body[data-theme="clear"] { background: linear-gradient(to bottom, #f6a04d, #fde08b); }
 body[data-theme="home"]  { background: linear-gradient(to bottom, #4e8fd6, #cfe4f7); }
 body[data-theme="cloud"] { background: linear-gradient(to bottom, #6fa8dc, #d9e8f5); }
@@ -27,7 +27,7 @@ main {
   padding: 40px 20px;
 }
 
-/* ---------- Header ---------- */
+
 header {
   text-align: center;
   margin-bottom: 24px;
@@ -51,7 +51,6 @@ h1 {
   font-size: 16px;
 }
 
-/* ---------- Search ---------- */
 form {
   display: flex;
   gap: 10px;
@@ -99,7 +98,7 @@ button:disabled {
   cursor: wait;
 }
 
-/* ---------- Status and error messages ---------- */
+
 #status {
   margin: 16px 0 0;
   text-align: center;
@@ -115,7 +114,7 @@ button:disabled {
   font-weight: 600;
 }
 
-/* ---------- Weather card ---------- */
+
 #result {
   margin-top: 24px;
   padding: 24px;
@@ -154,7 +153,6 @@ button:disabled {
   font-weight: 600;
 }
 
-/* ---------- Detail boxes ---------- */
 dl {
   display: flex;
   flex-wrap: wrap;
@@ -184,14 +182,13 @@ dd {
   font-weight: 600;
 }
 
-/* ---------- Small screens ---------- */
 @media (max-width: 400px) {
   #temp {
     font-size: 72px;
   }
 }
 
-/* ---------- Background video and animated weather scene ---------- */
+
 #bg-video {
   display: none;
   position: fixed;
@@ -214,7 +211,7 @@ dd {
   pointer-events: none;
 }
 
-/* Sun (becomes the moon at night) - hidden unless the weather needs it */
+
 .sun {
   display: none;
   position: absolute;
@@ -236,7 +233,7 @@ body[data-theme="night"] .sun {
   box-shadow: 0 0 40px 15px rgba(244, 241, 222, 0.35);
 }
 
-/* Clouds drifting across the sky */
+
 .cloud {
   display: none;
   position: absolute;
@@ -286,7 +283,6 @@ body[data-theme="storm"] .cloud { background: #4a5364; }
   to   { left: 110%; }
 }
 
-/* Rain drops, snow flakes and stars are created by script.js */
 #drops i {
   position: absolute;
   display: block;
@@ -321,7 +317,7 @@ body[data-theme="storm"] .cloud { background: #4a5364; }
   50% { opacity: 0.2; }
 }
 
-/* Lightning flash for storms */
+
 #scene::after {
   content: "";
   position: absolute;
